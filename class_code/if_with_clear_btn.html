@@ -1,0 +1,50 @@
+<!DOCTYPE html> <!--users can enter name, view it displayed on page-->
+<hmtl>          <!--then clear name with a button-->
+<head>
+    <title>Hello Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Hello Vue</h1>
+        <label for="name">Please enter your name: </label> <!--input field-->
+        <input v-model="name" id="name"> <!--input field bound to name variable through v-model, two way data binding-->
+
+        <div v-if="name"> <!--div only displays when name has value-->
+            <p>Your name is {{ name }}</p> <!--displays message using name-->
+            <button v-on:click="clearName">Clear input</button> <!--buttons calls the clearName function when clicked, using v-on:click-->
+        </div> <!--this div only displays if name is empty-->
+        <div v-else> 
+            <p>Awaiting user input.</p> <!--displays the message when div is empty-->
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue //destructures createApp and ref from Vue global object
+        
+        createApp({ // initialize new Vue app using VUe's composition API...
+            setup() { //.. with setup() function
+
+                const name = ref('') // empty string-define name as reactive ref initialized with empty string
+                // vue tracks changes to name and updates DOM wherever name is used
+                function clearName() { // clearName function sets name.value to empty string, clearing input field
+                    name.value = ''
+                }
+                // equivilant to above function definition
+
+                // const clearName = () => {
+                // name.value = ''
+                // }
+
+                return { // return name and clearName so accessible in template
+                    name, // vue binds name to the input and conditional content and clearName button
+                    clearName
+                }
+            }
+        }).mount('#app')
+    </script>
+
+</body>
+
+</hmtl>

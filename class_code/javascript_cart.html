@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Plain JavaScript Cart</title>
+<!--inline css to define tables appearance-->
+<style> 
+    td, th {
+        width: 25%;
+        text-align:center
+    }
+</style>
+
+</head>
+<body>
+    <div> <!--div contains main content of shopping cart-->
+        <h1>Example Shopping Cart</h1>
+        <table> <!--create table to display items -->
+            <tr><th>Item</th></th>Unit Price</th><th>Quantity</th><th>Total</th></tr> <!--define total table-->
+            <tr> <!--<tr></tr> defines a row in table for displaying item data-->
+                <td id="name"></td> <!--cell for item name with id set to name-->
+                <td id="unit-price"></td> <!--cell for unit-price with id unit-price-->
+                <td><input type="number" id="quantity"></td> <!--input field for adjusting the quantity, it's an <input> of the type number with id quantity-->
+                <td id="total"></td> <!--cell for displaying the total price, with id set to total-->
+            </tr>
+        </table>
+    </div>
+
+<script> // JavaScript section
+    
+    let data = { name: 'Hat', unitPrice: 4.99, quantity: 1} // initialize an object data to store info about the item with properties
+    // 
+    let nameEl = document.querySelector('#name') // item name, set to 'Hat'
+    let unitPriceEl = document.querySelector('#unit-price') // item price set to 4.99
+    let quantityInput = document.querySelector('#quantity')
+    let totalEl = document.querySelector('#total')
+
+    nameEl.innerHTML = data.name // sets the content of the name cell to the item name from data
+    unitPriceEl.innerHTML = data.unitPrice // sets content of the unit-price cell to the unit price from data
+    quantityInput.value = data.quantity // sets quantity input field to the initial quantity from data
+
+    // function to calculate and display the total price based on the quantity and unit price
+    function updateTotal() {
+        let total = quantityInput.value * unitPriceEl.innerHTML// calculate total by multiplying quantity from quantityInput.value by the unit price unitPriceEl.innerHTML
+        totalEl.innerHTML = total.toFixed(2) // display 2 decimal places
+    } // update total cell with the calculated total 
+    
+    // event listener - and event listener to qualityInput - triggers the updateTotal function when the input's value changes
+    quantityInput.addEventListener('input', function() { // updates total price in real time as user changes quantity
+        updateTotal() // call updateTotal once to initially set correct total when page loads
+    })
+
+    updateTotal()
+
+</script>
+
+
+</body>
+</html>

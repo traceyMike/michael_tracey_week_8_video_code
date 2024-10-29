@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hell Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>Hello Vue</h1>
+        <p>{{ message }}</p>
+
+        <button v-on:click="addExclamation">Add !</button>
+
+        <button v-on:click="clearExclamations">Clear Exclamation Points</button>
+    
+    </div>
+<script>
+
+    const { createApp, ref } = Vue
+
+    createApp({
+        setup() {
+            const message = ref('hi')
+            const numberOfExclamationPoints = ref(0)
+
+            function addExclamation(){
+                if (numberOfExclamationPoints.value < 10) {
+                    message.value = message.value + '!'
+                    numberOfExclamationPoints.value++
+                } else {
+                    alert('No more exclamation points!!!')
+                }
+            }
+
+            function clearExclamations() {
+                numberOfExclamationPoints.value = 0
+                message.value = 'hi'
+            }
+
+            return {
+                // hrefs - reactive data
+                message,
+                numberOfExclamationsPoints,
+                // function definitions
+                addExclamation,
+                clearExclamations
+            }
+        }
+    }).mount('#app')
+
+
+
+</script>
+
+
+</body>
+
+</html>

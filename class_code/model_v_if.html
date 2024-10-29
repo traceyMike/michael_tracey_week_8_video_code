@@ -1,0 +1,38 @@
+<!DOCTYPE html> <!--users can enter name, view it displayed on page-->
+<hmtl>         
+<head>
+    <title>Hello Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Hello Vue</h1>
+        <label for="name">Please enter your name: </label> <!--input field-->
+        <input v-model="name" id="name"> <!--input field bound to name variable through v-model, two way data binding-->
+    
+    <div v-if="name">
+        <p>Your name is {{ name }}</p>
+    </div>
+
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue
+
+        createApp({
+            setup() {
+
+                const name = ref('') // empty string
+
+                return {
+                    name
+                }
+            }
+        }).mount('#app')
+
+
+    </script>
+
+    </body>
+    </hmtl>

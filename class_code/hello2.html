@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Vue</title>
+    <script src="https://unpk.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <h1>Hello Vue</h1>
+        <p>
+            {{ uppercaseMessage }}
+        </p>
+
+        <button v-on:click="addExclamation">Add !</button>
+    </div>
+    <script>
+
+        const { createApp, ref, computed } = vue
+
+        createApp({
+            setup() {
+                const message = ref('hi')
+
+                function addExclamation(){
+                    message.value = message.value + '!'
+                }
+                // const uppercaseMessage = computed( function() {
+                // return message.value.toUpperCase()
+                // })
+
+                return {
+                    // refs = reactive data
+                    message,
+
+                    // function definitions 
+                    addExclamation,
+
+                    // computed properties
+                    uppercaseMessage
+                }
+            }
+        }).mount('#app')
+
+
+    </script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <!-- need to include the vue library -->
+     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
+</head>
+<body>
+<!-- we can have vue manage content for some or all of page -->
+
+<div id="app">
+<!-- you will manage all of the html here - all additions to page go in this div -->
+
+    <h1>Hello Vue!</h1>
+
+        {{ message }} <!-- return const message in div -->
+</div>
+
+<script>
+    // set up vue app
+    // way of saying there are some specific pieces in vue library
+    const { createApp, ref } = Vue
+    // createApp is function form vue that creates app 
+    createApp({
+        setup() { // setUp is function that sets up app
+            // define things vue app needs here
+
+            const message = ref('Hi')
+
+
+            return { // return what we have created
+                message // return the 'hi' message
+            }
+        }
+    }).mount('#app')
+
+
+
+
+    </script>
+    
+
+
+
+
+</body>
+</html>

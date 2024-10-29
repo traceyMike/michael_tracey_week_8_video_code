@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app"> <!-- root element for Vue app -->
+        <h1>Hello Vue</h1>
+        <label for="name">Please enter your name: </label>
+        <input v-model="name" id="name"> <!-- input field bound to the name variable via v-model - two way binds name in Vue so any changes automatically update name and vice versa -->
+
+        <div v-if="name"> <!-- use v-if directive to display content based on whether name has value -->
+            <p>Your name is {{ name }}</p> <!--if name not empty, displays message with current name value-->
+        </div>
+        <div v-else> <!--div that displays if name is empty, no input-->
+            <p>Awaiting user input.</p>
+        </div>
+    </div>
+
+    <script> // in script Vue app is created and mounted to #app
+        const { createApp, ref } = Vue // destructure createApp and ref from Vue's global object
+        
+        createApp({ // initialize Vue app using Vue's composition API with setup function
+            setup() {
+                // define name as reactive ref initialized to an empty string - allow vue to track changes to name and update DOM where name is used
+                const name = ref('') // empty string
+
+                return { // makes name variabel accessible in template
+                    name
+                }
+            }
+        }).mount('#app') // mount Vue app to the element with the ID app - Vue manages everything within this <div>
+    </script>
+
+</body>
+</html>

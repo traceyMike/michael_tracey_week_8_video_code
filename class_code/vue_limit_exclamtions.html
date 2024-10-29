@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+
+    <div id="app"> <!--root element for vue app-->
+
+        <h1>Hello Vue</h1>
+
+        <p>{{ message }}</p>
+
+        <button v-on:click="addExclamation">Add !</button> <!--this button calls the addExclamation function when clicked-->
+
+    </div>
+
+    <script>
+
+        const { createApp, ref } = Vue // destructure createApp and ref from the vue object
+
+        createApp({ // defines components state and methods using vue composition api
+            setup() {
+                const message = ref('hi') // initialize message as reactive reference with value of hi
+                const numberOfExclamationPoints = ref(0) // initialize numberOfExclamationPoints as reactive reference with value of 0-tracks # of ! added to message
+
+                function addExclamation(){ // define addExclamation function
+                    if (numberOfExclamationPoints.value < 10) { // check if # of ! is less than 10
+                        message.value = message.value + '!' // if yes, append ! to message and increment numberOfExclamationMarks by 1
+                        numberOfExclamationPoints.value++ // if ! reaches 10 show alert message
+                    } else {
+                        alert('No more exclamation points!') // alert message
+                    }
+                }
+                // return properties for Vue binding
+                return { 
+                    // refs - reactive data
+                    message, // return the items here to make them available in template
+                    numberOfExclamationPoints,
+                    // function definition
+                    addExclamation,
+                }
+            }
+        }).mount('#app') // mounts the Vue app to the element with the ID app, so vue controls everything in <div>
+        
+
+    </script>
+
+
+
+</body>
+
+
+</html>
