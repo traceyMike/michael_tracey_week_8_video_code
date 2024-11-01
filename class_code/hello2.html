@@ -17,13 +17,13 @@
     </div>
     <script>
 
-        const { createApp, ref, computed } = vue
+        const { createApp, ref, computed } = vue // createApp to make new app
 
         createApp({
-            setup() {
-                const message = ref('hi')
+            setup() { // setup is part of vue
+                const message = ref('hi') // message defined as reactive ref, set to hi
 
-                function addExclamation(){
+                function addExclamation(){ // functions, appends ! to message variable
                     message.value = message.value + '!'
                 }
                 // const uppercaseMessage = computed( function() {
